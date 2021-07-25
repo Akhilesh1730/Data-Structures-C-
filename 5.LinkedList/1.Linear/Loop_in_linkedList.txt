@@ -1,0 +1,74 @@
+#include<iostream>
+using namespace std;
+struct Node
+{
+	int data;
+	struct Node *next;
+}*head=NULL;
+void create()
+{
+	char choice;
+	int n;
+	struct Node *node,*temp1;
+	do
+	{
+		cout<<"\nEnter the element ";
+		cin>>n;
+		
+        node = new Node;
+		node->data=n;
+		node->next=NULL;
+		
+		if(head==NULL)
+		{
+			head=node;
+			temp1=head;
+		}
+		else
+		{
+			temp1->next=node;
+			temp1=node;
+		}
+		
+	cout<<"\nDo you want to enter more elements(y/n)";
+	cin>>choice;
+	}while(choice=='y');
+    struct Node *t1,*t2;
+	//t1=head->next->next;
+	//t2=head->next->next->next;
+	//t2->next=t1;
+}
+
+
+
+void loop_or_not()
+{
+	struct Node *p,*q;
+	int flag=0;
+	p=head;
+	q=head;
+	while(q!=NULL)
+	{
+		p=p->next;
+		q=q->next;
+	if(q!=NULL)
+	{
+		q=q->next;
+		if(p==q) 
+		{
+			cout<<"\nLoop found";
+			flag=1;
+			break;
+		}
+		else flag=0;
+	}
+     else 	 flag=0;
+	}
+	if(flag==0)  cout<<"\nLoop not found";
+}
+int main()
+{
+       create();
+        //display(head);
+		loop_or_not();
+}
