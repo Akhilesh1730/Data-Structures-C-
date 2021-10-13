@@ -15,9 +15,9 @@ class max_Heap
             if(size>1)
             {
                 int swap,n=size;
-                while(max_heap[n]>max_heap[n/2] && n>0)
+                while(max_heap[n]>max_heap[n/2] && n>1)
                 {
-                     cout<<"\n"<<n<<" "<<n/2;
+                     
                     swap=max_heap[n/2];
                     max_heap[n/2]=max_heap[n];
                     max_heap[n]=swap;
@@ -39,39 +39,53 @@ class max_Heap
     }
     void Delete()
     {
-        int key;
+        int key,swap;
         char ch;
         do
         {
-        cout<<"\nEnter key to delete";
-        cin>>key;
         
-        int k=1;
-        while(max_heap[k]!=key)
-          k++;
-        
-        while(k<size)
+        if(size>1)
         {
+        key=max_heap[1];
+        cout<<"\n Root element "<<key<<" deleted successfully";
+        max_heap[1]=max_heap[size-1];
+        size--;
+        int k=1;
+        
+        
+          
+        while(k<size && 2*k<size)
+        {
+            
             if(max_heap[2*k]>max_heap[(2*k+1)])
             {
+               swap=max_heap[k];
                max_heap[k]=max_heap[2*k];
+               max_heap[2*k]=swap;
                k=2*k;
             }
             else
             {
-                max_heap[k]=max_heap[(2*k+1)];
+                swap=max_heap[k];
+               max_heap[k]=max_heap[(2*k+1)];
+               max_heap[(2*k+1)]=swap;
                k=(2*k+1);
             }
         }
-        size--;
+        
+        
         cout<<"\nDo you want to delete more element";
         cin>>ch;
+        }
+        else 
+        {
+            cout<<"\nNo element in heap ";
+            break;
+        }
         }while(ch=='y');
         
-         for(int i=1;i<size;i++)
-        {
-            cout<<max_heap[i]<<" ";
-        }
+        cout<<"\n";
+        
         
     }
 };
